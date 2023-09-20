@@ -22,6 +22,8 @@ public class ShooterSubsystem extends SubsystemBase
         this.m_motor = new TalonFX(Constants.shooterID);
         servoA = new PWM( Constants.servoA);
         servoB = new PWM( Constants.servoB);
+
+        
     }
     public void SetPower(double power)
     {
@@ -40,7 +42,8 @@ public class ShooterSubsystem extends SubsystemBase
         //:Max: 2500μs
         for (PWM servo : Arrays.asList(servoA, servoB)) 
         {
-            System.out.println(servo.getRawBounds());
+            System.out.println(servo.getRawBounds().min);
+            System.out.println(servo.getRawBounds().max);
         }
         
         
@@ -51,7 +54,8 @@ public class ShooterSubsystem extends SubsystemBase
     public void periodic() {
         for (PWM servo : Arrays.asList(servoA, servoB)) 
         {
-            System.out.println(servo.getRawBounds());
+            System.out.println("min of servo" +   servo.getRawBounds().min);
+            System.out.println("max of servo" +   servo.getRawBounds().max);
         }
     }
 }
