@@ -10,7 +10,9 @@ import org.ejml.equation.Variable;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ShootCommand;
 import frc.robot.subsystems.DriveSubsystem;
@@ -18,6 +20,8 @@ import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.TempPneumaticSubsystem;
 import frc.robot.utils3603.EZButton;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.RepeatCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -49,6 +53,11 @@ public class RobotContainer {
 
   public RobotContainer() {
 
+var tab = Shuffleboard.getTab("Diagnostics");
+tab.addNumber("Pressure", () -> pneumaticSubsystem.compressor.getPressure());
+tab.addBoolean("X pressed", () -> d_solenoid.getAsBoolean());
+tab.addBoolean("Solenoid status", () -> pneumaticSubsystem.solenoid.get());
+
     m_driveSubsystem.setDefaultCommand
       (
         new DriveCommand(m_driveSubsystem, 
@@ -61,8 +70,12 @@ public class RobotContainer {
     //Solenoid is active when the button is pressed
     //Inverted because wpilib can go to hell
     //god im rusty
-    pneumaticSubsystem.solenoid.set(!d_solenoid.getAsBoolean());
-  }
+    // pneumaticSubsystem.setDefaultCommand(new RunCommand(() ->pneumaticSubsystem.solenoid.set(d_solenoid.getAsBoolean())), pneumaticSubsystem) ;
+  pneumaticSubsystem.setDefaultCommand
+  (Commands.run(() -> pneumaticSubsystem.solenoid.set(d_solenoid.getAsBoolean()? true : false), pneumaticSubsystem));
+    
+  // d_solenoid.whileTrue(new RepeatCommand());
+}
 
   public Command getAutonomousCommand() {
     return new WaitCommand(1);

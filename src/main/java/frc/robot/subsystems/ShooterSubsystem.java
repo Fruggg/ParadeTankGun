@@ -15,13 +15,13 @@ import frc.robot.Constants;
 public class ShooterSubsystem extends SubsystemBase 
 {
     private TalonFX m_motor;
-    private PWM servoA; 
+    // private PWM servoA; 
 
-    private PWM servoB;
+    // private PWM servoB;
     public ShooterSubsystem() {
         this.m_motor = new TalonFX(Constants.shooterID);
-        servoA = new PWM( Constants.servoA);
-        servoB = new PWM( Constants.servoB);
+        // servoA = new PWM( Constants.servoA);
+        // servoB = new PWM( Constants.servoB);
 
         
     }
@@ -34,28 +34,28 @@ public class ShooterSubsystem extends SubsystemBase
      * 
      * @param angle From 0 to 270 degrees
      */
-    public void SetAngle(int angle)
-    {
-        int setpoint = (angle/270) * 255;
-        //:Min: 500μs
-        //:Mid: 1500μs
-        //:Max: 2500μs
-        for (PWM servo : Arrays.asList(servoA, servoB)) 
-        {
-            System.out.println(servo.getRawBounds().min);
-            System.out.println(servo.getRawBounds().max);
-        }
+    // public void SetAngle(int angle)
+    // {
+    //     int setpoint = (angle/270) * 255;
+    //     //:Min: 500μs
+    //     //:Mid: 1500μs
+    //     //:Max: 2500μs
+    //     for (PWM servo : Arrays.asList(servoA, servoB)) 
+    //     {
+    //         System.out.println(servo.getRawBounds().min);
+    //         System.out.println(servo.getRawBounds().max);
+    //     }
         
         
 
 
-    }
+    // }
     @Override
     public void periodic() {
-        for (PWM servo : Arrays.asList(servoA, servoB)) 
-        {
-            System.out.println("min of servo" +   servo.getRawBounds().min);
-            System.out.println("max of servo" +   servo.getRawBounds().max);
-        }
+        // for (PWM servo : Arrays.asList(servoA, servoB)) 
+        // {
+        //     System.out.println("min of servo" +   servo.getRawBounds().min);
+        //     System.out.println("max of servo" +   servo.getRawBounds().max);
+        // }
     }
 }

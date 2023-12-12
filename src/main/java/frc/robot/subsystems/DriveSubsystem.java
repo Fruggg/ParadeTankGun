@@ -25,7 +25,7 @@ public class DriveSubsystem extends SubsystemBase{
          
      //motor 2 disconnected
       //motor 4 disconnected
-     public  WPI_TalonSRX rMasterMotor0 = new WPI_TalonSRX(0);
+     public  WPI_TalonSRX rMasterMotor0 = new WPI_TalonSRX(7);
         
      private WPI_TalonSRX rSlaveMmotor1= new WPI_TalonSRX(1); //private as we won't need to access the slaves
      public WPI_TalonSRX lMasterMotor3= new WPI_TalonSRX(3);

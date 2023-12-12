@@ -15,6 +15,6 @@ package frc.robot;
 public final class Constants {
     static final int driver_controller_port = 0;
     public static final int shooterID = 6;
-    public static final int servoA = 1; 
-    public static final int servoB = 2; 
+    // public static final int servoA = 1; 
+    // public static final int servoB = 2; 
 }

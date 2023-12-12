@@ -55,19 +55,19 @@ private PWM servoA;
   @Override
   public void disabledInit() 
   {
-    servoA = new PWM( Constants.servoA);
-    servoB = new PWM( Constants.servoB);
+    // servoA = new PWM( Constants.servoA);
+    // servoB = new PWM( Constants.servoB);
 
   }
 
   @Override
   public void disabledPeriodic() 
   {
-for (PWM servo : Arrays.asList(servoA, servoB)) 
-        {
-            System.out.println(servo.getRawBounds().min);
-            System.out.println(servo.getRawBounds().max);
-        }
+// for (PWM servo : Arrays.asList(servoA, servoB)) 
+//         {
+//             System.out.println(servo.getRawBounds().min);
+//             System.out.println(servo.getRawBounds().max);
+//         }
   }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
